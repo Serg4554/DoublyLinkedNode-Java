@@ -4,9 +4,10 @@ public class Node<T> {
 	private Node<T> next;
 	private T data;
 	
-	public Node(Node<T> prev, Node<T> next) {
-		this.prev=prev;
-		this.next=next;
+	public Node() {
+		this.prev = null;
+		this.next = null;
+		this.data = null;
 	}
 	public void setPrevNode(Node<T> node) {
 		this.prev = node;
