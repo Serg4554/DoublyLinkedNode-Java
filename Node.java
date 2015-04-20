@@ -14,6 +14,18 @@ public class Node<T> {
 	public void setNextNode(Node<T> node) {
 		this.next = node;
 	}
+	public void setNodeData(T data) {
+		this.data = data;
+	}
+	public Node<T> getPrevNode(Node<T> node) {
+		return this.prev;
+	}
+	public Node<T> getNextNode(Node<T> node) {
+		return this.next;
+	}
+	public T getNodeData(T data) {
+		return this.data;
+	}
 	public String toString() {
 		String str="";
 		try {
