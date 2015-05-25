@@ -1,6 +1,7 @@
 package org.iis.doublylinkednode;
 
 import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
 
 import org.iis.doublylinkednode.DoublyLinkedList;
 import org.junit.After;
@@ -133,12 +134,33 @@ public class DoublyLinkedListTest<T> {
     int datoEsperado = 3;
     
     nodoNuevo.setNodeData(datoEsperado);
-    listaNumeros.insertAfter(listaNumeros.getNodeList(), listaNumeros.getNodeList().get(2), nodoNuevo);
+    listaNumeros.insertAfter(listaNumeros.getNodeList(), listaNumeros.getNodeList().get(1), nodoNuevo);
     int real = listaNumeros.getNodeList().size();
-    int datoReal = listaNumeros.getNodeList().get(3).getNodeData();
+    int datoReal = listaNumeros.getNodeList().get(2).getNodeData();
     
     assertEquals(datoEsperado, datoReal);
     assertEquals(esperado, real);
+  }
+  
+  @Test (expected = IndexOutOfBoundsException.class)
+  public void testInsertarNodoAlPrincipioFueraDeRango() {
+    Node<Integer> nodoNuevo = new Node<Integer>();
+    
+    listaNumeros.insertBefore(listaNumeros.getNodeList(), listaNumeros.getNodeList().get(0), nodoNuevo);
+  }
+  
+  @Test (expected = IndexOutOfBoundsException.class)
+  public void testInsertarNodoAlFinalFueraDeRango() {
+    Node<Integer> nodoNuevo = new Node<Integer>();
+    int tam = listaNumeros.getNodeList().size();
+    
+    listaNumeros.insertAfter(listaNumeros.getNodeList(), listaNumeros.getNodeList().get(tam-1), nodoNuevo);
+  }
+  
+  @Test (expected = NoSuchElementException.class)
+  public void testBorrarNodoListaVacia() {
+    Node<T> nodoABorrar = new Node<T>();
+    listaVacia.removeNode(listaVacia.getNodeList(), nodoABorrar);
   }
   
   @Test
@@ -157,17 +179,5 @@ public class DoublyLinkedListTest<T> {
     
     assertEquals(esperado, real);
   }
-  
- /* @Test
-  public void testStringListaTresEnteros() {
-    DoublyLinkedList<Integer> lista3Numeros =  new DoublyLinkedList<Integer>(0);
-    lista3Numeros.getNodeList().add(new Node<Integer>(3));
-    lista3Numeros.getNodeList().add(new Node<Integer>(4));
-    lista3Numeros.getNodeList().add(new Node<Integer>(1));
-    String esperado = "3->4->1";
-    String real = listaNumeros.toString();
-    
-    assertEquals(esperado, real);
-  }*/
 
 }
