@@ -33,7 +33,6 @@ public class DoublyLinkedList<T> {
       newNode.setNextNode(nodeList.get(nodePosition + 1));
     } catch (IndexOutOfBoundsException e) {
       newNode.setNextNode(null);
-      throw e;
     }
     nodeList.add(nodePosition + 1, newNode);
   }
@@ -48,7 +47,6 @@ public class DoublyLinkedList<T> {
       newNode.setPrevNode(nodeList.get(nodePosition - 1));
     } catch (IndexOutOfBoundsException e) {
       newNode.setPrevNode(null);
-      throw e;
     }
     nodeList.add(nodePosition, newNode);
   }
@@ -89,7 +87,6 @@ public class DoublyLinkedList<T> {
         nodeList.get(nodePosition).setPrevNode(nodeList.get(nodePosition - 1));
       } catch (IndexOutOfBoundsException e) {
         nodeList.get(nodePosition - 1).setNextNode(null);
-        throw e;
       }
     } else {
       nodeList.get(nodePosition).setPrevNode(null);
