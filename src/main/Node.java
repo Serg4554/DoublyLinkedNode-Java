@@ -38,9 +38,9 @@ public class Node<T> {
   @Override
   public String toString() {
     String str = "";
-    try {
+    if (data != null){
       str = data.toString();
-    } catch (NullPointerException e) {
+    } else {
       str = "Empty";
     }
     return str;
